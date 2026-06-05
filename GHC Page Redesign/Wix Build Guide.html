@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GH³ Helping Hands — Wix Build Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#002339;--navy2:#06273f;--card:#15314a;--blue:#7fccf7;--blue-deep:#3a8fce;
+    --tan:#c89b6a;--tan-light:#e0c29a;--ink:#1d2a33;--soft:#5a6672;--line:#e3e9ee;--bg:#f4f7fa;
+    --font:"Mulish",-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .doc{max-width:880px;margin:0 auto;background:#fff;padding:0 0 80px;box-shadow:0 20px 60px -30px rgba(0,30,60,.3)}
+  header.hd{background:var(--navy2);color:#fff;padding:54px 56px 46px;position:relative;overflow:hidden}
+  header.hd::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-120px;top:-120px;
+    background:radial-gradient(circle,rgba(200,155,106,.35),transparent 70%)}
+  header.hd .kick{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tan-light);font-weight:700;margin:0 0 12px;position:relative;z-index:2}
+  header.hd h1{font-size:2.3rem;font-weight:800;letter-spacing:-.02em;margin:0;line-height:1.1;position:relative;z-index:2}
+  header.hd p{margin:14px 0 0;color:rgba(255,255,255,.82);max-width:54ch;position:relative;z-index:2}
+  .body{padding:18px 56px 0}
+  h2{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;margin:46px 0 6px;padding-top:26px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px}
+  h2 .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--navy2);color:#fff;font-size:.95rem;flex-shrink:0}
+  h3{font-size:1.06rem;font-weight:800;margin:26px 0 8px;color:var(--navy2)}
+  p{margin:10px 0}
+  .lead{color:var(--soft)}
+  ul{margin:10px 0;padding-left:22px}li{margin:6px 0}
+  code{background:#eef3f7;border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.85em;color:#0b3a5b;white-space:nowrap}
+  table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.93rem}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--bg);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+  tr:last-child td{border-bottom:0}
+  .sw{display:inline-block;width:15px;height:15px;border-radius:4px;vertical-align:-3px;margin-right:8px;border:1px solid rgba(0,0,0,.12)}
+  .callout{background:#fbf6ef;border:1px solid #ecd9c0;border-left:4px solid var(--tan);border-radius:10px;padding:16px 20px;margin:18px 0}
+  .callout.blue{background:#eef7fd;border-color:#cfe7f6;border-left-color:var(--blue-deep)}
+  .callout p{margin:6px 0}
+  .callout strong{color:var(--navy2)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:6px}
+  .pill.native{background:#e3f5ea;color:#1c6b3f}
+  .pill.embed{background:#fdeede;color:#9a5b14}
+  .pill.cms{background:#e8eefc;color:#274690}
+  .check{list-style:none;padding-left:0}
+  .check li{padding-left:30px;position:relative;margin:9px 0}
+  .check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:5px;border:2px solid var(--blue-deep)}
+  .tokens{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .tok{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px 14px}
+  .tok .chip{width:34px;height:34px;border-radius:7px;flex-shrink:0;border:1px solid rgba(0,0,0,.1)}
+  .tok b{display:block;font-size:.9rem}.tok span{font-size:.8rem;color:var(--soft)}
+  .foot{padding:30px 56px 0;color:var(--soft);font-size:.85rem}
+  @media print{body{background:#fff}.doc{box-shadow:none;max-width:none}header.hd{padding:40px}}
+  @media (max-width:640px){.body,.foot{padding-left:24px;padding-right:24px}header.hd{padding:40px 24px}.tokens{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header class="hd">
+  <p class="kick">Developer Handoff · Wix Build</p>
+  <h1>Greater Houston Helping Hands (GH³)</h1>
+  <p>A section-by-section guide to rebuilding the redesigned page natively in Wix — chosen direction: <strong style="color:#fff">Warm Embrace</strong> with warm earth-tone accents.</p>
+</header>
+
+<div class="body">
+
+  <h2><span class="num">0</span> Strategy &amp; legend</h2>
+  <p class="lead">Build the page natively in the Wix Editor so it's responsive, editable, and lives inside your existing header &amp; footer. Reserve embeds only for the few effects Wix can't do natively. Every item below is tagged:</p>
+  <p>
+    <span class="pill native">Native</span> built with standard Wix elements &nbsp;
+    <span class="pill cms">CMS</span> backed by a Wix collection (repeater) &nbsp;
+    <span class="pill embed">Embed/CSS</span> needs an HTML embed or Velo custom CSS
+  </p>
+  <div class="callout">
+    <p><strong>Don't rebuild the nav or footer.</strong> They already exist site-wide. Just add this as a new page using the current header/footer. The versions in the prototype are faithful recreations for reference only.</p>
+  </div>
+
+  <h2><span class="num">1</span> Foundations: palette &amp; type</h2>
+  <h3>Add these to your Site Palette</h3>
+  <div class="tokens">
+    <div class="tok"><span class="chip" style="background:#002339"></span><div><b>Brand Navy</b><span>#002339 · nav, footer, team band</span></div></div>
+    <div class="tok"><span class="chip" style="background:#06273f"></span><div><b>Hero Navy</b><span>#06273F · hero &amp; dark sections</span></div></div>
+    <div class="tok"><span class="chip" style="background:#15314a"></span><div><b>Card Navy</b><span>#15314A · team cards</span></div></div>
+    <div class="tok"><span class="chip" style="background:#7fccf7"></span><div><b>Light Blue</b><span>#7FCCF7 · buttons, links</span></div></div>
+    <div class="tok"><span class="chip" style="background:#3a8fce"></span><div><b>Deep Blue</b><span>#3A8FCE · eyebrows / labels</span></div></div>
+    <div class="tok"><span class="chip" style="background:#c89b6a"></span><div><b>Warm Tan</b><span>#C89B6A · accent rules, glow</span></div></div>
+    <div class="tok"><span class="chip" style="background:#e0c29a"></span><div><b>Tan Light</b><span>#E0C29A · card hover accent</span></div></div>
+    <div class="tok"><span class="chip" style="background:#ffffff"></span><div><b>White</b><span>#FFFFFF · About &amp; CTA bg</span></div></div>
+  </div>
+
+  <h3>Typography — Proxima Nova</h3>
+  <p>Upload <strong>Proxima Nova</strong> as a custom font (Wix → Site fonts → Upload fonts) if you have a web license. If not, the closest free Wix substitute is <strong>Mulish</strong> or <strong>Proza Libre</strong>. Set these text styles:</p>
+  <table>
+    <tr><th>Element</th><th>Size (desktop)</th><th>Weight</th><th>Notes</th></tr>
+    <tr><td>Hero title</td><td>56–60px (≈36px mobile)</td><td>800</td><td>Line-height 1.05, letter-spacing −0.02em</td></tr>
+    <tr><td>Section title (“About GH³”, “Our Team”)</td><td>40–46px</td><td>800</td><td>Centered, tan rule under it</td></tr>
+    <tr><td>Eyebrow / kicker</td><td>13px</td><td>700</td><td>UPPERCASE, letter-spacing 0.22em, Deep Blue</td></tr>
+    <tr><td>Card / sub-head titles</td><td>24px</td><td>800</td><td>—</td></tr>
+    <tr><td>Member name</td><td>18px</td><td>700</td><td>—</td></tr>
+    <tr><td>Member role</td><td>11.5px</td><td>700</td><td>UPPERCASE, letter-spacing 0.12em, Light Blue</td></tr>
+    <tr><td>Body / paragraph</td><td>17–18px</td><td>400</td><td>Line-height 1.6</td></tr>
+    <tr><td>Buttons</td><td>16px</td><td>700</td><td>Pill shape (full radius)</td></tr>
+  </table>
+
+  <h3>Spacing system</h3>
+  <ul>
+    <li>Content max-width <strong>1200px</strong>, side padding <strong>32px</strong> (20px mobile).</li>
+    <li>Section vertical padding <strong>~92px</strong> desktop, <strong>64px</strong> mobile.</li>
+    <li>Card corner radius <strong>14–16px</strong>. Button radius = fully rounded (pill).</li>
+    <li>Team grid gap <strong>18px</strong>; About cards gap <strong>26px</strong>.</li>
+  </ul>
+
+  <h2><span class="num">2</span> Hero — “Warm Embrace” <span class="pill native">Native</span> <span class="pill embed">Embed/CSS</span></h2>
+  <p>Full-width <strong>Section</strong>, background <strong>Hero Navy #06273F</strong>, two columns split roughly <strong>42% / 58%</strong>, vertically centered, ~80px top / 88px bottom padding.</p>
+  <ul>
+    <li><strong>Left column:</strong> the emblem image (<code>logo-emblem-cut.png</code>), max width ~360px, centered.</li>
+    <li><strong>Warm glow behind emblem:</strong> place a soft radial-gradient PNG (tan, ~30% opacity) behind it, or a Wix box filled with a radial gradient <code>rgba(200,155,106,.30) → transparent</code>. <span class="pill embed">Embed/CSS</span></li>
+    <li><strong>Right column, stacked:</strong> a <strong>tan rule</strong> (60×4px box, #C89B6A) → eyebrow “A Ministry of Greater Houston Church” → H1 title with “(GH³)” in Light Blue → subtitle → two buttons.</li>
+    <li><strong>Buttons:</strong> primary = solid Light Blue (#7FCCF7) with navy text “Request an Event”; secondary = outline Light Blue “Meet the Team”.</li>
+    <li><strong>Mobile:</strong> stack to one column, emblem on top, everything centered.</li>
+  </ul>
+  <div class="callout blue"><p>Wix tip: build the “title + (GH³)” as one text element and color just the “(GH³)” span Light Blue using the inline text color picker.</p></div>
+
+  <h2><span class="num">3</span> About GH³ <span class="pill native">Native</span></h2>
+  <p>White section. Centered eyebrow “About the Ministry” → H2 “About GH³” → 54px tan rule. Below, a <strong>two-column</strong> row of cards (stack on mobile):</p>
+  <ul>
+    <li>Each card: background <strong>Hero Navy #06273F</strong>, radius 16px, padding ~38px, a <strong>5px tan bar</strong> down the left edge.</li>
+    <li>Card content: small Light-Blue label (OUR MISSION / OUR VISION) → bold white title → paragraph (use the exact mission/vision copy from the current site).</li>
+  </ul>
+
+  <h2><span class="num">4</span> Our Team <span class="pill cms">CMS</span> <span class="pill native">Native</span></h2>
+  <p>Navy band (#002339). Centered eyebrow + “Our Team” + tan rule, then a <strong>Repeater</strong>.</p>
+  <h3>Create a CMS collection: <code>HelpingHandsTeam</code></h3>
+  <table>
+    <tr><th>Field</th><th>Type</th><th>Example</th></tr>
+    <tr><td><code>name</code></td><td>Text</td><td>Jill Charney</td></tr>
+    <tr><td><code>role</code></td><td>Text</td><td>North Region Rep</td></tr>
+    <tr><td><code>email</code></td><td>Text</td><td>charneyjill@gmail.com</td></tr>
+    <tr><td><code>group</code></td><td>Text (tag)</td><td>Regional · HOPE · Support</td></tr>
+    <tr><td><code>order</code></td><td>Number</td><td>1, 2, 3…</td></tr>
+  </table>
+  <p>Bind a 4-up repeater (2-up tablet, 1-up mobile) to the collection, sorted by <code>order</code>. Card item: name (white, 18px/700) → role (Light Blue, uppercase 11.5px/700) → email (white 58% opacity, links to <code>mailto:</code>).</p>
+  <ul>
+    <li>Use a <strong>filtered repeater per group</strong> (or three datasets) to reproduce the three blocks: <em>Our Team</em> (Regional, 4-up), <em>Our Team With HOPE Worldwide</em> (HOPE, 2-up), <em>Support Team</em> (Support, 2-up). Each sub-block has a left-aligned heading with a thin divider line.</li>
+    <li><strong>Card hover</strong> (lift + tan top-border): Wix gives you a built-in hover state for the box (slight move + shadow). The animated tan top-line is the one flourish that needs <span class="pill embed">Embed/CSS</span> — optional; the hover lift alone looks great.</li>
+  </ul>
+  <div class="callout"><p><strong>Why CMS:</strong> reps change. With a collection, adding or editing a team member is a content edit — no design work, no risk of breaking layout.</p></div>
+
+  <h2><span class="num">5</span> Community Service CTA <span class="pill native">Native</span></h2>
+  <p>White section, centered. Church line-icon (74px, navy) → H2 “Have a Community Service Event?” → paragraph (existing copy) → solid <strong>navy pill button</strong> “Make a Request” linking to the request form / footer. Use a Wix vector/icon for the church, or export the one in the prototype as SVG.</p>
+
+  <h2><span class="num">6</span> Decorative flourishes <span class="pill embed">Embed/CSS</span></h2>
+  <ul>
+    <li><strong>Skyline line-art</strong> (only used in the “Skyline” direction — skip for Warm Embrace).</li>
+    <li><strong>Faint arc texture</strong> behind the team band: optional. Use a low-opacity PNG positioned left, or omit.</li>
+    <li><strong>Reveal-on-scroll:</strong> apply Wix’s built-in <em>Fade in / Float up</em> animation to the hero text, cards, and headings — no code needed. Keep it subtle.</li>
+  </ul>
+
+  <h2><span class="num">7</span> Build checklist</h2>
+  <ul class="check">
+    <li>Add the 8 palette colors + upload Proxima Nova; set the text styles in the table.</li>
+    <li>New page using existing header/footer.</li>
+    <li>Hero section: split layout, emblem + warm glow, tan rule, title, two buttons.</li>
+    <li>About: 2 navy cards with tan left-bar on white.</li>
+    <li>Create <code>HelpingHandsTeam</code> CMS collection; import the 12 members.</li>
+    <li>Team band: three group-filtered repeaters (4-up / 2-up / 2-up).</li>
+    <li>CTA: church icon, heading, copy, navy pill button.</li>
+    <li>Apply built-in fade/float-up reveal animations.</li>
+    <li>Add optional Embed/CSS flourishes (card top-line, glow) if desired.</li>
+    <li>QA at 1440px and 390px; check email links, button links, form.</li>
+  </ul>
+
+</div>
+
+<div class="foot">
+  <p>Reference prototype: <code>Helping Hands Redesign.html</code> (toggle to “Warm Embrace”, warmth “Warm”). Assets: <code>logo-emblem-cut.png</code> (transparent emblem). All exact values above are pulled from that file.</p>
+  <p>Tip: open this guide and press <strong>⌘/Ctrl + P → Save as PDF</strong> to share with a Wix freelancer.</p>
+</div>
+
+</div>
+</body>
+</html>
